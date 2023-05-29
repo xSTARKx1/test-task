@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
+import moment from 'moment';
 
 import {
   Button,
@@ -55,7 +56,11 @@ const FindDoctorForm: FC = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const newValues = {
+        ...values,
+        birthdayDate: moment(values.birthdayDate).format('DD/MM/YYYY'),
+      };
+      alert(JSON.stringify(newValues, null, 2));
     },
   });
 
