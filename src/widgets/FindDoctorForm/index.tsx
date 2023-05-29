@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import moment from 'moment';
+import { message } from 'antd';
 
 import {
   Button,
@@ -23,6 +24,7 @@ const FindDoctorForm: FC = () => {
     [] as Speciality[]
   );
   const [filteredDoctors, setFilteredDoctors] = useState([] as Doctor[]);
+  const [messageApi, contextHolder] = message.useMessage();
 
   const getData = async () => {
     try {
@@ -35,13 +37,16 @@ const FindDoctorForm: FC = () => {
       setSpeciality(speciality);
       setFilteredSpecialities(speciality);
     } catch (err) {
-      console.log('error', err);
+      messageApi.open({
+        type: 'error',
+        content: 'Something is wrong! Try again!',
+      });
     }
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   const { handleSubmit, errors, touched, handleChange, values } = useFormik({
     initialValues: {
@@ -107,6 +112,7 @@ const FindDoctorForm: FC = () => {
 
   return (
     <>
+      {contextHolder}
       <Title text='React test task' />
 
       <form onSubmit={handleSubmit}>
