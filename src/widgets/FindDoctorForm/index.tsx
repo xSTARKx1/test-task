@@ -46,7 +46,7 @@ const FindDoctorForm: FC = () => {
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   const { handleSubmit, errors, touched, handleChange, values } = useFormik({
     initialValues: {
