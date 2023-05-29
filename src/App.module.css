@@ -1,0 +1,8 @@
+.wrapper {
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    width: 600px;
+    margin: 0 auto;
+    background-color: rgba(145, 145, 145, 0.1);
+    padding: 20px;
+}
